@@ -5,7 +5,59 @@
     <title>Vignes buissonnieres</title>
 </head>
 <body>
-<h1>Hello world</h1>
-<script src="app.js"></script>
+
+    <h1>Vignes Buissonières</h1>
+
+    <div id="app">
+        <div v-if="!id_token">
+            <p>
+                Bienvenue sur la vente des vignes buissionnières !
+                De nombreuses personnes souhaitent accèder à la vente des billets.
+                Veuillez prendre un ticket pour entrer dans la fil d'attente.
+            </p>
+            <p>
+                <button @click="newTicket">Prendre un nouveau ticket</button>
+            </p>
+        </div>
+        <div v-else>
+
+            <p>
+                Votre numéro : {{id_token}}
+            </p>
+
+            <div v-if="nb_devant === undefined">
+                Connection au serveur...
+            </div>
+            <div v-else-if="nb_devant === 0">
+                Vous pouvez accèder à la vente ! Votre session est valide 15 minutes.
+                <br>
+                <button @click="enter">Accèder à la vente</button>
+            </div>
+            <div v-else>
+                <p>
+                    Il y a encore {{nb_devant}} personnes devant vous.
+                </p>
+                <p>
+                    Votre place est actualisée toutes les 30 secondes.
+                </p>
+            </div>
+
+        </div>
+
+        <div>
+            DEBUG :
+            <button @click="loadProgression">Refresh</button>
+            <button @click="newTicket">New ticket</button>
+            <button @click="reset">Reset</button>
+            <button @click="enter">Enter</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <!-- production version, optimized for size and speed -->
+<!--    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>-->
+
+    <script src="app.js"></script>
 </body>
 </html>
