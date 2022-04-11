@@ -1,5 +1,5 @@
-// const URL = 'https://app-27708ea6-829f-4a95-ad6e-dcfe60ec21d6.cleverapps.io';
-const URL = 'http://localhost:3002';
+const URL = 'https://app-27708ea6-829f-4a95-ad6e-dcfe60ec21d6.cleverapps.io';
+// const URL = 'http://localhost:3002';
 const URL_REDIRECT = 'https://vignesbuissonnieres-cc.devpoisson.fr/create_cookie.php';
 
 new Vue({
