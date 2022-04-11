@@ -1,6 +1,6 @@
-const URL = 'https://app-27708ea6-829f-4a95-ad6e-dcfe60ec21d6.cleverapps.io';
+// const URL = 'https://app-27708ea6-829f-4a95-ad6e-dcfe60ec21d6.cleverapps.io';
+const URL = 'http://localhost:3002';
 const URL_REDIRECT = 'https://vignesbuissonnieres-cc.devpoisson.fr/create_cookie.php';
-// const url = 'http://localhost:3002';
 
 new Vue({
     el: '#app',
@@ -40,7 +40,7 @@ new Vue({
             console.log('json', json);
             const redirect_to = URL_REDIRECT + '?expiration=' + json.timestamp + '&signature=' + json.signature_cookie;
             console.log('redirect to', redirect_to, '...');
-            window.location.href = redirect_to;
+            // window.location.href = redirect_to;
         },
         reset: async function() {
             sessionStorage.clear();

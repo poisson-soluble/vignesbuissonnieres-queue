@@ -9,7 +9,10 @@
     <h1>Vignes Buissonières</h1>
 
     <div id="app">
-        <div v-if="!id_token">
+        <div v-if="progression === undefined">
+            Connection au serveur...
+        </div>
+        <div v-else-if="!id_token">
             <p>
                 Bienvenue sur la vente des vignes buissionnières !
                 De nombreuses personnes souhaitent accèder à la vente des billets.
@@ -25,10 +28,7 @@
                 Votre numéro : {{id_token}}
             </p>
 
-            <div v-if="nb_devant === undefined">
-                Connection au serveur...
-            </div>
-            <div v-else-if="nb_devant === 0">
+            <div v-if="nb_devant === 0">
                 Vous pouvez accèder à la vente ! Votre session est valide 15 minutes.
                 <br>
                 <button @click="enter">Accèder à la vente</button>
