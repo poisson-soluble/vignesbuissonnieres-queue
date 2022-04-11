@@ -1,6 +1,6 @@
 const url = 'https://app-27708ea6-829f-4a95-ad6e-dcfe60ec21d6.cleverapps.io';
 // const url = 'http://localhost:3002';
-const URL_REDIRECT = 'https://vignesbuissonnieres-cc.devpoisson.fr/create_cookie.php';
+const URL_REDIRECT = 'https://billetterie.vignes-buissonnieres.fr/create_cookie.php';
 
 document.getElementById('refresh').addEventListener('click', async () => {
     await refreshProgression()
