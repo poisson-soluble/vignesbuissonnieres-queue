@@ -40,7 +40,7 @@ new Vue({
             console.log('json', json);
             const redirect_to = URL_REDIRECT + '?expiration=' + json.timestamp + '&signature=' + json.signature_cookie;
             console.log('redirect to', redirect_to, '...');
-            // window.location.href = redirect_to;
+            window.location.href = redirect_to;
         },
         reset: async function() {
             sessionStorage.clear();
