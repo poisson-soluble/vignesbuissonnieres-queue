@@ -48,6 +48,7 @@ new Vue({
         }
     },
     mounted () {
+        this.loadProgression();
         setInterval(() => {
             this.loadProgression();
         }, 3000);
