@@ -16,7 +16,7 @@
             <p>
                 Bienvenue sur la vente des vignes buissionnières !
                 De nombreuses personnes souhaitent accèder à la vente des billets.
-                Veuillez prendre un ticket pour entrer dans la fil d'attente.
+                Veuillez prendre un ticket pour entrer dans la file d'attente.
             </p>
             <p>
                 <button @click="newTicket">Prendre un nouveau ticket</button>
@@ -28,7 +28,12 @@
                 Votre numéro : {{id_token}}
             </p>
 
-            <div v-if="nb_devant === 0">
+            <div v-if="valid_but_expired">
+                Votre session de 15 minutes a expirée.
+                <br>
+                <button @click="newTicket">Prendre un nouveau ticket</button>
+            </div>
+            <div v-else-if="nb_devant === 0">
                 Vous pouvez accèder à la vente ! Votre session est valide 15 minutes.
                 <br>
                 <button @click="enter">Accèder à la vente</button>

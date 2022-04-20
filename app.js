@@ -22,6 +22,7 @@ new Vue({
             const json = await response.json();
 
             if (json.id) {
+                this.valid_but_expired = false;
                 this.id_token = json.id;
                 this.signature_token = json.signature;
 
@@ -38,11 +39,17 @@ new Vue({
             const response = await fetch(URL + '/enter?id=' + this.id_token + '&signature_id=' + this.signature_token);
             const json = await response.json();
             console.log('json', json);
-            const redirect_to = URL_REDIRECT + '?expiration=' + json.timestamp + '&signature=' + json.signature_cookie;
-            console.log('redirect to', redirect_to, '...');
-            window.location.href = redirect_to;
+            if (json.timestamp > new Date()) {
+                console.log('expired', json.timestamp);
+                this.valid_but_expired = true;
+            } else {
+                const redirect_to = URL_REDIRECT + '?expiration=' + json.timestamp + '&signature=' + json.signature_cookie;
+                console.log('redirect to', redirect_to, '...');
+                window.location.href = redirect_to;
+            }
         },
         reset: async function() {
+            this.valid_but_expired = false;
             sessionStorage.clear();
             location.reload();
         }
@@ -51,12 +58,13 @@ new Vue({
         this.loadProgression();
         setInterval(() => {
             this.loadProgression();
-        }, 3000);
+        }, 3000); // TODO passer à 30 secondes
     },
     data: {
-        progression: undefined,
+        progression: undefined, // Curseur d'avancement dans la queue
         id_token: sessionStorage.getItem('id_token'),
         signature_token: sessionStorage.getItem('signature_token'),
+        valid_but_expired: false, // Peut entrer sur le site mais sa session a expiré
     },
 })
 
