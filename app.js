@@ -39,13 +39,13 @@ new Vue({
             const response = await fetch(URL + '/enter?id=' + this.id_token + '&signature_id=' + this.signature_token);
             const json = await response.json();
             console.log('json', json);
-            if (json.timestamp > new Date()) {
+            if (json.timestamp*1000 < new Date()) {
                 console.log('expired', json.timestamp);
                 this.valid_but_expired = true;
             } else {
                 const redirect_to = URL_REDIRECT + '?expiration=' + json.timestamp + '&signature=' + json.signature_cookie;
                 console.log('redirect to', redirect_to, '...');
-                window.location.href = redirect_to;
+                // window.location.href = redirect_to;
             }
         },
         reset: async function() {
