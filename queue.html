@@ -7,7 +7,6 @@
 <body>
 
 
-test
     <h1>Vignes Buissonières</h1>
 
     <div id="app">
@@ -15,14 +14,42 @@ test
             Connection au serveur...
         </div>
         <div v-else-if="!id_token">
-            <p>
-                Bienvenue sur la vente des vignes buissionnières !
-                De nombreuses personnes souhaitent accèder à la vente des billets.
-                Veuillez prendre un ticket pour entrer dans la file d'attente.
-            </p>
-            <p>
-                <button @click="newTicket">Prendre un nouveau ticket</button>
-            </p>
+            <header class="mb-4">
+                <div class="container">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <img src="img/pic-logo.png" alt="logo" class="img-fluid" >
+                            <img src="img/aop-pic.png" alt="logo" class="img-fluid" >
+                        </div>
+                        <div>
+                            <a style="font-weight: 400;font-size: 14px;line-height: 18px;text-decoration: none;color: #000000;" href="#">Photothèque</a>
+                            <a style="margin-left:20px;font-weight: 400;font-size: 14px;line-height: 18px;text-decoration: none;color: #000000;" href="#">Contact</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4" style="background-color: #790027;height: 70px;">
+
+                </div>
+            </header>
+            <div class="container">
+                <section>
+                    <h2 class="mb-4" style="font-weight: 700;font-size: 24px;line-height: 30px;color: #780429;">
+                        <img src="img/information.svg" alt="information">
+                        Réservation de billets pour les Vignes Buissonières
+                    </h2>
+                    <p style="font-weight: 400;font-size: 16px;line-height: 30px;color: #494949;">
+                        Bienvenue sur notre espace de vente en lignes des vignes buissionnières !
+                        <br><span class="fw-bold">De nombreuses personnes souhaitent accèder à la vente des billets.
+                <br>Veuillez prendre un ticket pour entrer dans la file d'attente.</span>
+                    </p>
+                    <a href="#" class="mb-3" style="text-decoration:none;border: 2px solid #780429;border-radius: 5px;display: inline-block;padding: 10px 30px;">
+                        <div class="d-flex align-items-center">
+                            <img src="img/ticket.svg" alt="ticket">
+                            <span style="text-transform:uppercase;font-weight: 700;font-size: 20px;line-height: 25px;color: #780429;padding-left: 10px;">PRENDRE UN TICKET</span>
+                        </div>
+                    </a>
+                </section>
+            </div>
         </div>
         <div v-else>
 
