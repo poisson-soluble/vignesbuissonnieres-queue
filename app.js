@@ -55,10 +55,12 @@ new Vue({
         }
     },
     mounted () {
-        this.loadProgression();
+        setTimeout(() =>{
+            this.loadProgression();
+        }, 3000);
         setInterval(() => {
             this.loadProgression();
-        }, 3000); // TODO passer à 30 secondes
+        }, 30000); // TODO passer à 30 secondes
     },
     data: {
         progression: undefined, // Curseur d'avancement dans la queue
