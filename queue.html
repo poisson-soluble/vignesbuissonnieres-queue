@@ -17,7 +17,7 @@
             Connection au serveur...
         </div>
         <div v-else-if="!id_token">
-            <header class="mb-4">
+            <header class="mb-4 mt-4">
                 <div class="container">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
@@ -45,39 +45,76 @@
                         <br><span class="fw-bold">De nombreuses personnes souhaitent accèder à la vente des billets.
                 <br>Veuillez prendre un ticket pour entrer dans la file d'attente.</span>
                     </p>
-                    <a href="#" class="mb-3" style="text-decoration:none;border: 2px solid #780429;border-radius: 5px;display: inline-block;padding: 10px 30px;">
+                    <button @click="newTicket" href="#" class="mb-3" style="background-color:white;text-decoration:none;border: 2px solid #780429;border-radius: 5px;display: inline-block;padding: 10px 30px;">
                         <div class="d-flex align-items-center">
                             <img src="img/ticket.svg" alt="ticket">
                             <span style="text-transform:uppercase;font-weight: 700;font-size: 20px;line-height: 25px;color: #780429;padding-left: 10px;">PRENDRE UN TICKET</span>
                         </div>
-                    </a>
+                    </button>
                 </section>
             </div>
         </div>
         <div v-else>
+            <section class="mb-4 mt-4">
+                <div class="container">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <img src="img/pic-logo.png" alt="logo" class="img-fluid" >
+                            <img src="img/aop-pic.png" alt="logo" class="img-fluid" >
+                        </div>
+                        <div>
+                            <a style="font-weight: 400;font-size: 14px;line-height: 18px;text-decoration: none;color: #000000;" href="#">Photothèque</a>
+                            <a style="margin-left:20px;font-weight: 400;font-size: 14px;line-height: 18px;text-decoration: none;color: #000000;" href="#">Contact</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4" style="background-color: #790027;height: 70px;">
 
-            <p>
-                Votre numéro : <span style="color: #780429;font-weight: bold">{{id_token}}</span>
-            </p>
+                </div>
+            </section>
+            <div class="container">
+                <div class="row">
+                    <h2 class="mb-4" style="font-weight: 700;font-size: 24px;line-height: 30px;color: #780429;">
+                        <img src="img/information.svg" alt="information">
+                        Informations de position dans la file d'attente
+                    </h2>
+                    <p>
+                        Votre numéro : <span style="color: #780429;font-weight: bold">{{id_token}}</span>
+                    </p>
 
-            <div v-if="valid_but_expired">
-                Votre session de 15 minutes a expirée.
-                <br>
-                <button @click="newTicket" style="border: 2px solid #780429;border-radius: 5px;display: inline-block;padding: 10px 30px;">Prendre un nouveau ticket</button>
+                    <div v-if="valid_but_expired">
+                        <section>
+                            <h2 class="mb-4" style="font-weight: 700;font-size: 24px;line-height: 30px;color: #780429;">
+                                <img src="img/information.svg" alt="information">
+                                Votre session a expiré
+                            </h2>
+                            <p style="margin-bottom:30px;font-weight: 400;font-size: 16px;line-height: 30px;color: #494949;">
+                                Vous pouvez à nouveau prendre un ticket pour entrer dans la file
+                            </p>
+                            <button @click="newTicket" class="mt-5 mb-3" style="text-decoration:none;border: 2px solid #780429;border-radius: 5px;display: inline-block;padding: 10px 30px;">
+                                <div class="d-flex align-items-center">
+                                    <img src="img/ticket.svg" alt="ticket">
+                                    <span style="text-transform:uppercase;font-weight: 700;font-size: 20px;line-height: 25px;color: #780429;padding-left: 10px;">PRENDRE UN NOUVEAU TICKET</span>
+                                </div>
+                            </button>
+                        </section>
+                    </div>
+                    <div v-else-if="nb_devant === 0">
+                        Vous pouvez accèder à la vente ! Votre session est valide 15 minutes.
+                        <br>
+                        <button @click="enter" class="mt-5" style="background-color:white;text-decoration:none;border: 2px solid #780429;border-radius: 5px;display: inline-block;padding: 10px 30px;"><span style="text-transform:uppercase;font-weight: 700;font-size: 20px;line-height: 25px;color: #780429;padding-left: 10px;">Accèder à la vente</span></button>
+                    </div>
+                    <div v-else>
+                        <p>
+                            Il y a <span style="color: #780429;font-weight: bold">{{nb_devant}} personnes</span> devant vous.
+                        </p>
+                        <p>
+                            Votre place est actualisée toutes les <span style="color: #780429;font-weight: bold">30 secondes.</span>
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div v-else-if="nb_devant === 0">
-                Vous pouvez accèder à la vente ! Votre session est valide 15 minutes.
-                <br>
-                <button @click="enter" style="border: 2px solid #780429;border-radius: 5px;display: inline-block;padding: 10px 30px;">Accèder à la vente</button>
-            </div>
-            <div v-else>
-                <p>
-                    Il y a <span style="color: #780429;font-weight: bold">{{nb_devant}} personnes</span> devant vous.
-                </p>
-                <p>
-                    Votre place est actualisée toutes les <span style="color: #780429;font-weight: bold">30 secondes.</span>
-                </p>
-            </div>
+
 
         </div>
 
