@@ -33,6 +33,10 @@ new Vue({
         },
         enter: async function() {
             const response = await fetch(URL + '/enter?id=' + this.id_token + '&signature_id=' + this.signature_token);
+            if (response.status !== 200) {
+                console.log('error', response);
+                return;
+            }
             const json = await response.json();
             console.log('json', json);
             if (json.timestamp*1000 < new Date()) {
