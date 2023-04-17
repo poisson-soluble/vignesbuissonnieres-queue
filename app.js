@@ -1,4 +1,4 @@
-const URL = 'https://app-b2f86271-629c-4583-91eb-9defc1880c7c.cleverapps.io/';
+const URL = 'https://app-b2f86271-629c-4583-91eb-9defc1880c7c.cleverapps.io'; // Sans / à la fin
 // const URL = 'http://localhost:3002';
 const URL_REDIRECT = 'https://billetterie.vignes-buissonnieres.fr/create_cookie.php';
 
