@@ -55,12 +55,15 @@ new Vue({
         }
     },
     mounted () {
+        // On attends 3 secondes avant d'appeller le serveur. Évite les gens qui F5 en boucle...
         setTimeout(() =>{
             this.loadProgression();
         }, 3000);
+        
+        // On refresh toutes les 30 secondes
         setInterval(() => {
             this.loadProgression();
-        }, 30000); // TODO passer à 30 secondes
+        }, 30000);
     },
     data: {
         progression: undefined, // Curseur d'avancement dans la queue
