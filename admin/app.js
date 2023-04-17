@@ -1,4 +1,4 @@
-const url = 'https://app-27708ea6-829f-4a95-ad6e-dcfe60ec21d6.cleverapps.io';
+const url = 'http://app-b2f86271-629c-4583-91eb-9defc1880c7c.cleverapps.io';
 // const url = 'http://localhost:3002';
 const URL_REDIRECT = 'https://billetterie.vignes-buissonnieres.fr/create_cookie.php';
 
@@ -16,13 +16,13 @@ document.getElementById('set-progression').addEventListener('click', async () =>
     render();
 });
 
-// document.getElementById('reset').addEventListener('click', async () => {
-//     const password = document.getElementById('password').value;
-//     await fetch(url + '/reset?password='+password);
-//     await refreshProgression()
-//     await refreshCurrentToken()
-//     render();
-// });
+document.getElementById('reset').addEventListener('click', async () => {
+    const password = document.getElementById('password').value;
+    await fetch(url + '/reset?password='+password);
+    await refreshProgression()
+    await refreshCurrentToken()
+    render();
+});
 
 document.getElementById('enter').addEventListener('click', async () => {
     const password = document.getElementById('password').value;
