@@ -32,8 +32,7 @@ new Vue({
             this.progression = parseInt(json.progression);
         },
         enter: async function() {
-            const signature_encoded = encodeURIComponent(this.signature_token);
-            const response = await fetch(URL + '/enter?id=' + this.id_token + '&signature_id=' + signature_encoded);
+            const response = await fetch(URL + '/enter?id=' + this.id_token + '&signature_id=' + this.signature_token);
             if (response.status !== 200) {
                 console.log('error', response);
                 return;
@@ -44,7 +43,7 @@ new Vue({
                 console.log('expired', timestamp);
                 this.valid_but_expired = true;
             } else {
-                const redirect_to = URL_REDIRECT + '?expiration=' + timestamp + '&signature=' + encodeURIComponent(signature_cookie);
+                const redirect_to = URL_REDIRECT + '?expiration=' + timestamp + '&signature=' + signature_cookie;
                 console.log('redirect to', redirect_to, '...');
                 // window.location.href = redirect_to;
             }
