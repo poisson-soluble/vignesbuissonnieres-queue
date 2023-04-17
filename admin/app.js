@@ -10,7 +10,7 @@ document.getElementById('refresh').addEventListener('click', async () => {
 
 document.getElementById('set-progression').addEventListener('click', async () => {
     const password = document.getElementById('password').value;
-    const response = await fetch(url + '/progress?password='+password);
+    const response = await fetch(url + '/admin/progress?password='+password);
     const json = await response.json();
     progression = parseInt(json.progression);
     render();
@@ -18,7 +18,7 @@ document.getElementById('set-progression').addEventListener('click', async () =>
 
 document.getElementById('reset').addEventListener('click', async () => {
     const password = document.getElementById('password').value;
-    await fetch(url + '/reset?password='+password);
+    await fetch(url + '/admin/reset?password='+password);
     await refreshProgression()
     await refreshCurrentToken()
     render();
