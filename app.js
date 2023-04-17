@@ -6,10 +6,6 @@ new Vue({
     el: '#app',
     computed: {
         nb_devant: function() {
-            if (!this.progression) {
-                return undefined;
-            }
-
             let nb_devant = this.id_token - this.progression;
             if (nb_devant < 0) nb_devant = 0;
             return nb_devant;
@@ -59,7 +55,7 @@ new Vue({
         setTimeout(() =>{
             this.loadProgression();
         }, 3000);
-        
+
         // On refresh toutes les 30 secondes
         setInterval(() => {
             this.loadProgression();
