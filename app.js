@@ -26,8 +26,8 @@ new Vue({
                 this.id_token = json.id;
                 this.signature_token = json.signature;
 
-                sessionStorage.setItem('id_token', this.id_token);
-                sessionStorage.setItem('signature_token', this.signature_token);
+                sessionStorage.setItem('id_token_2023', this.id_token);
+                sessionStorage.setItem('signature_token_2023', this.signature_token);
             }
         },
         loadProgression: async function() {
@@ -67,8 +67,8 @@ new Vue({
     },
     data: {
         progression: undefined, // Curseur d'avancement dans la queue
-        id_token: sessionStorage.getItem('id_token'),
-        signature_token: sessionStorage.getItem('signature_token'),
+        id_token: sessionStorage.getItem('id_token_2023'),
+        signature_token: sessionStorage.getItem('signature_token_2023'),
         valid_but_expired: false, // Peut entrer sur le site mais sa session a expiré
     },
 })
