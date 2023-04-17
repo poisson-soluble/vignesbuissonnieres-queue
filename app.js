@@ -45,7 +45,7 @@ new Vue({
             } else {
                 const redirect_to = URL_REDIRECT + '?expiration=' + timestamp + '&signature=' + signature_cookie;
                 console.log('redirect to', redirect_to, '...');
-                // window.location.href = redirect_to;
+                window.location.href = redirect_to;
             }
         },
         reset: async function() {
