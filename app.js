@@ -32,18 +32,19 @@ new Vue({
             this.progression = parseInt(json.progression);
         },
         enter: async function() {
-            const response = await fetch(encodeURIComponent(URL + '/enter?id=' + this.id_token + '&signature_id=' + this.signature_token));
+            const signature_encoded = encodeURIComponent(this.signature_token);
+            const response = await fetch(URL + '/enter?id=' + this.id_token + '&signature_id=' + signature_encoded);
             if (response.status !== 200) {
                 console.log('error', response);
                 return;
             }
-            const json = await response.json();
-            console.log('json', json);
-            if (json.timestamp*1000 < new Date()) {
-                console.log('expired', json.timestamp);
+            const {timestamp, signature_cookie} = await response.json();
+            console.log('json', timestamp, signature_cookie);
+            if (timestamp*1000 < new Date()) {
+                console.log('expired', timestamp);
                 this.valid_but_expired = true;
             } else {
-                const redirect_to = URL_REDIRECT + '?expiration=' + json.timestamp + '&signature=' + json.signature_cookie;
+                const redirect_to = URL_REDIRECT + '?expiration=' + timestamp + '&signature=' + encodeURIComponent(signature_cookie);
                 console.log('redirect to', redirect_to, '...');
                 window.location.href = encodeURIComponent(redirect_to);
             }
