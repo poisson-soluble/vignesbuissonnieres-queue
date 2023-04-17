@@ -32,7 +32,7 @@ new Vue({
             this.progression = parseInt(json.progression);
         },
         enter: async function() {
-            const response = await fetch(URL + '/enter?id=' + this.id_token + '&signature_id=' + this.signature_token);
+            const response = await fetch(encodeURI(URL + '/enter?id=' + this.id_token + '&signature_id=' + this.signature_token));
             if (response.status !== 200) {
                 console.log('error', response);
                 return;
@@ -45,7 +45,7 @@ new Vue({
             } else {
                 const redirect_to = URL_REDIRECT + '?expiration=' + json.timestamp + '&signature=' + json.signature_cookie;
                 console.log('redirect to', redirect_to, '...');
-                window.location.href = redirect_to;
+                window.location.href = encodeURI(redirect_to);
             }
         },
         reset: async function() {
