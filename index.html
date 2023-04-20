@@ -33,96 +33,19 @@
 
        <div id="app" class="container">
 
-
-        <div v-if="progression === undefined">
-
-            <div class="d-flex flex-row align-center align-items-center mt-3">
-                <div class="spinner-border d-flex flex-column me-2" role="status">
-                  <span class="sr-only"></span>
-                 </div>
-                     <div class="fs-5">
-                         Connexion au serveur...
-                     </div>
-             </div>
-
-        </div>
-
-        <div v-else-if="!id_token">
+        <div>
             <section>
                 <h2 class="mb-4" style="font-weight: 700;font-size: 24px;line-height: 30px;color: #780429;">
                     <img src="img/information.svg" alt="information">
                     Réservation de billets pour les Vignes Buissonières
                 </h2>
                 <p style="font-weight: 400;font-size: 16px;line-height: 30px;color: #494949;">
-                    Bienvenue sur notre espace de vente en lignes des vignes buissionnières !
-                    <br><span class="fw-bold">De nombreuses personnes souhaitent accèder à la vente des billets.
-            <br>La file d'attente a atteint son nombre maximal d'utilisateurs, elle est donc fermée pour l'instant. Merci</span>
+                    Notre évènement est désormais complet.
                 </p>
             </section>
         </div>
 
-        <div v-else>
-            <div class="row">
-
-                <h2 class="mb-4" style="font-weight: 700;font-size: 24px;line-height: 30px;color: #780429;">
-                    <img src="img/information.svg" alt="information">
-                    Informations de position dans la file d'attente
-                </h2>
-                <p>
-                    Votre numéro : <span style="color: #780429;font-weight: bold">{{id_token}}</span>
-                </p>
-
-                <div v-if="valid_but_expired">
-                    <section>
-                        <h2 class="mb-4" style="font-weight: 700;font-size: 24px;line-height: 30px;color: #780429;">
-                            <img src="img/information.svg" alt="information">
-                            Votre session a expiré
-                        </h2>
-                        <p style="margin-bottom:30px;font-weight: 400;font-size: 16px;line-height: 30px;color: #494949;">
-                            Vous pouvez à nouveau prendre un ticket pour entrer dans la file
-                        </p>
-                        <button @click="newTicket" class="mt-5 mb-3" style="text-decoration:none;border: 2px solid #780429;border-radius: 5px;display: inline-block;padding: 10px 30px;">
-                            <div class="d-flex align-items-center">
-                                <img src="img/ticket.svg" alt="ticket">
-                                <span style="text-transform:uppercase;font-weight: 700;font-size: 20px;line-height: 25px;color: #780429;padding-left: 10px;">PRENDRE UN NOUVEAU TICKET</span>
-                            </div>
-                        </button>
-                    </section>
-                </div>
-
-                <div v-else-if="nb_devant === 0">
-                    Vous pouvez accèder à la vente ! Votre session est valide 15 minutes.
-                    <br>
-                    <button @click="enter" class="mt-5" style="background-color:white;text-decoration:none;border: 2px solid #780429;border-radius: 5px;display: inline-block;padding: 10px 30px;"><span style="text-transform:uppercase;font-weight: 700;font-size: 20px;line-height: 25px;color: #780429;padding-left: 10px;">Accèder à la vente</span></button>
-                </div>
-                <div v-else>
-                    <p>
-                        Il y a <span style="color: #780429;font-weight: bold">{{nb_devant}} personnes</span> devant vous.
-                    </p>
-                    <p>
-                        Votre place est actualisée toutes les <span style="color: #780429;font-weight: bold">30 secondes.</span>
-                    </p>
-                </div>
-            </div>
-
-        </div>
-
-        <!--
-        <div style="margin-top: 100px;">
-            DEBUG :
-            <button @click="loadProgression">Refresh</button>
-            <button @click="newTicket">New ticket</button>
-            <button @click="reset">Reset</button>
-            <button @click="enter">Enter</button>
-        </div>
-        -->
     </div>
 
-    <!--<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>-->
-
-    <!-- production version, optimized for size and speed -->
-   <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-
-    <script src="app.js"></script>
 </body>
 </html>
