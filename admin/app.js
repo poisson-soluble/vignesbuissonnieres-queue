@@ -1,4 +1,4 @@
-const URL = 'https://app-63b6fe25-4d21-4c29-8a49-7af37fd607b8.cleverapps.io'; // Sans / à la fin
+const URL = 'https://backend-queue.vignes-buissonnieres.fr'; // Sans / à la fin. Dupliqué dans le /app.js et /admin/app.js
 // const url = 'http://localhost:3002';
 const URL_REDIRECT = 'https://billetterie.vignes-buissonnieres.fr/create_cookie.php';
 

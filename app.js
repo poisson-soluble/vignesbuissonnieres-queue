@@ -1,4 +1,4 @@
-const URL = 'https://app-63b6fe25-4d21-4c29-8a49-7af37fd607b8.cleverapps.io'; // Sans / à la fin
+const URL = 'https://backend-queue.vignes-buissonnieres.fr'; // Sans / à la fin. Dupliqué dans le /app.js et /admin/app.js
 // const URL = 'http://localhost:3002';
 const URL_REDIRECT = 'https://billetterie.vignes-buissonnieres.fr/create_cookie.php';
 
@@ -22,8 +22,8 @@ new Vue({
                 this.id_token = json.id;
                 this.signature_token = json.signature;
 
-                sessionStorage.setItem('id_token_2024', this.id_token);
-                sessionStorage.setItem('signature_token_2024', this.signature_token);
+                sessionStorage.setItem('id_token_2025', this.id_token);
+                sessionStorage.setItem('signature_token_2025', this.signature_token);
             }
         },
         loadProgression: async function() {
@@ -67,8 +67,8 @@ new Vue({
     },
     data: {
         progression: undefined, // Curseur d'avancement dans la queue
-        id_token: sessionStorage.getItem('id_token_2024'),
-        signature_token: sessionStorage.getItem('signature_token_2024'),
+        id_token: sessionStorage.getItem('id_token_2025'),
+        signature_token: sessionStorage.getItem('signature_token_2025'),
         valid_but_expired: false, // Peut entrer sur le site mais sa session a expiré
     },
 })
