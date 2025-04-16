@@ -1,23 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <title>Vignes buissonnières</title>
+    <title>Vignes Buissonnieres</title>
 </head>
 <body>
+
 <header class="mb-4 mt-4">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
             <div>
                 <a href="index.html">
                     <img src="img/logo-new.png" alt="logo" class="img-fluid" width="250" >
-                    <!--<img src="https://vb2023.devpoisson.fr/wp-content/uploads/cropped-logo-vb-23.jpg" alt="logo" class="img-fluid" >-->
                 </a>
             </div>
             <div>
@@ -30,40 +29,105 @@
 
     </div>
 </header>
-<div class="container">
-    <section class="mb-5">
-        <h2 style="text-align:center;margin-bottom:50px;font-weight:bold;">Les billets pour l'évenement Pic Saint Loup " Les vignes Buissonnières " se déroulant le 7-8 juin seront disponibles à l'achat le 16 avril 2025 à 10h00 ! </h2>
-        <em style="text-align:center;"> Il s'agit ici du portail de prévente de la billetterie. Vous aurez de nouveau accès à vos comptes demain lors de la vente des billets, puis dans un délai d'1 à 2 heures après la fermeture de la billetterie.</em>
-        <div class="mt-2 mb-4">
-            <img src="img/PIC-23-header-billet.jpg" alt="logo" class="w-100">
+
+<div id="app" class="container">
+
+
+    <div v-if="progression === undefined">
+
+        <div class="d-flex flex-row align-center align-items-center mt-3">
+            <div class="spinner-border d-flex flex-column me-2" role="status">
+                <span class="sr-only"></span>
+            </div>
+            <div class="fs-5">
+                Connexion au serveur...
+            </div>
         </div>
 
-        <p>
-            Bonjour à tous,<br></br>
-            La boutique ouvre le mercredi 16 avril à 10h00.<br>
-            Les réservations se font à partir de notre e billetterie www.vignes-buissonnieres.fr
-            Cette année nous avons mis en place une file d’attente qui vous permettra dès 10h00 d’obtenir un numéro.  Attention aucun numéro ne sera attribué avant cette heure-ci. De même, une fois connecté, il est inutile de rafraichir
-            votre page au risque de perdre votre numéro.
-            <br></br>
-            Nous vous rappelons que vous pouvez choisir le jour et l’heure de votre départ.
-        </p>
-        <ul>
-            <li> Les créneaux horaires s’échelonnent de 9h00 à 13h30 avec des départs toutes les 10 minutes. </li>
-            <li> Le prix est de 90 euros. </li>
-            <li>  Vos achats sont limités à 6 places par connexion, pensez à vous munir de  votre Carte Bleu et de votre téléphone afin de récupérer le code de
-                sécurité de votre banque. (3Dsecure)</li>
-        </ul>
-        Le parcours s’étend sur environ 6 kms de chemins entre vignes et garrigues et ne présente pas difficultés majeures. Le départ se fait sur la commune de Sainte Croix de Quintillargues.  L’accès au parking sera fléché. Pour votre confort, vous voudrez bien respecter ces quelques consignes : Vous trouverez les informations complémentaires sur vos billets, que vous devrez télécharger dans le mail récapitulatif de votre commande. (Vous pourrez nous présenter votre billet sur votre téléphone)
-        <br>
-        <br>
-        Nous n’avons pas de service de navette, cependant plusieurs options vous sont proposées : taxi, mini bus ou VTC. Là aussi les informations figurent sur vos billets.
-        <br>
-        <br>
-        Au plaisir de vous accueillir en Pic Saint Loup !
-    </section>
+    </div>
 
+    <div v-else-if="!id_token">
+        <section>
+            <h2 class="mb-4" style="font-weight: 700;font-size: 24px;line-height: 30px;color: #780429;">
+                <img src="img/information.svg" alt="information">
+                Réservation de billets pour les Vignes Buissonnières
+            </h2>
+            <p style="font-weight: 400;font-size: 16px;line-height: 30px;color: #494949;">
+                Bienvenue sur notre espace de vente en ligne des Vignes Buissionnières !
+                <br><span class="fw-bold">De nombreuses personnes souhaitent accèder à la vente des billets.
+            <br>Veuillez prendre un ticket pour entrer dans la file d'attente.</span>
+            </p>
+            <button @click="newTicket" href="#" class="mb-3" style="background-color:white;text-decoration:none;border: 2px solid #780429;border-radius: 5px;display: inline-block;padding: 10px 30px;">
+                <div class="d-flex align-items-center">
+                    <img src="img/ticket.svg" alt="ticket">
+                    <span style="text-transform:uppercase;font-weight: 700;font-size: 20px;line-height: 25px;color: #780429;padding-left: 10px;">PRENDRE UN TICKET</span>
+                </div>
+            </button>
+        </section>
+    </div>
+
+    <div v-else>
+        <div class="row">
+
+            <h2 class="mb-4" style="font-weight: 700;font-size: 24px;line-height: 30px;color: #780429;">
+                <img src="img/information.svg" alt="information">
+                Informations de position dans la file d'attente
+            </h2>
+            <p>
+                Votre numéro : <span style="color: #780429;font-weight: bold">{{id_token}}</span>
+            </p>
+
+            <div v-if="valid_but_expired">
+                <section>
+                    <h2 class="mb-4" style="font-weight: 700;font-size: 24px;line-height: 30px;color: #780429;">
+                        <img src="img/information.svg" alt="information">
+                        Votre session a expiré
+                    </h2>
+                    <p style="margin-bottom:30px;font-weight: 400;font-size: 16px;line-height: 30px;color: #494949;">
+                        Vous pouvez à nouveau prendre un ticket pour entrer dans la file
+                    </p>
+                    <button @click="newTicket" class="mt-5 mb-3" style="text-decoration:none;border: 2px solid #780429;border-radius: 5px;display: inline-block;padding: 10px 30px;">
+                        <div class="d-flex align-items-center">
+                            <img src="img/ticket.svg" alt="ticket">
+                            <span style="text-transform:uppercase;font-weight: 700;font-size: 20px;line-height: 25px;color: #780429;padding-left: 10px;">PRENDRE UN NOUVEAU TICKET</span>
+                        </div>
+                    </button>
+                </section>
+            </div>
+
+            <div v-else-if="nb_devant === 0">
+                Vous pouvez accèder à la vente ! Votre session est valide 15 minutes.
+                <br>
+                <button @click="enter" class="mt-5" style="background-color:white;text-decoration:none;border: 2px solid #780429;border-radius: 5px;display: inline-block;padding: 10px 30px;"><span style="text-transform:uppercase;font-weight: 700;font-size: 20px;line-height: 25px;color: #780429;padding-left: 10px;">Accèder à la vente</span></button>
+            </div>
+            <div v-else>
+                <p>
+                    Il y a <span style="color: #780429;font-weight: bold">{{nb_devant}} personnes</span> devant vous.
+                </p>
+                <p>
+                    Votre place est actualisée toutes les <span style="color: #780429;font-weight: bold">30 secondes.</span>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!--
+    <div style="margin-top: 100px;">
+        DEBUG :
+        <button @click="loadProgression">Refresh</button>
+        <button @click="newTicket">New ticket</button>
+        <button @click="reset">Reset</button>
+        <button @click="enter">Enter</button>
+    </div>
+    -->
 </div>
 
+<!--<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>-->
 
+<!-- production version, optimized for size and speed -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+<script src="app.js"></script>
 </body>
 </html>
